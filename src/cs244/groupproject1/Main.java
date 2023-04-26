@@ -1,15 +1,12 @@
 package cs244.groupproject1;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.shape.Circle;
 import javafx.scene.layout.HBox;
 
 
@@ -29,8 +26,14 @@ public class Main extends Application {
         Button insert = new Button("Insert");
         Button delete = new Button("Delete");
         HBox hbox = new HBox(5);
-        hbox.getChildren().addAll(textField, insert, delete);
+        Menu dropMenu = new Menu("Select a type of tree");
+        dropMenu.getItems().addAll(new MenuItem("AVL Tree"), new MenuItem("BS Tree"), new MenuItem("Binary Tree"));
+        MenuBar mb = new MenuBar();
+        mb.getMenus().add(dropMenu);
+        
+        hbox.getChildren().addAll(mb, textField, insert, delete);
         hbox.setAlignment(Pos.TOP_CENTER);
+        
         StackPane root = new StackPane();
         root.getChildren().add(hbox);
         primaryStage.setScene(new Scene(root, 1000, 800));
