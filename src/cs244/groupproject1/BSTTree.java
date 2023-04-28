@@ -57,20 +57,15 @@ public class BSTTree extends BinaryTree {
 		return root;
 		
 	}
-	public int getNodeCount() {// helper method to count total nodes.
-	 countNodes(root)
-	}
-	
-	
 	
 	private int countNodes(Node node) {  //Benjamin 4/27  // recusive method to count the total amount of nodes in the the respective bst tree
-		if(node= null) {
+		if(node == null) {
 	         
 		return 0;
 		}
 	        else {
 		
-		return countNodes(node.getleft()) + countNodes(node.getright()) +  1) ;
+		return countNodes(node.getLeft()) + countNodes(node.getRight()) +  1;
 			
 		}
 	
