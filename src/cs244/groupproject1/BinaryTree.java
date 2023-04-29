@@ -89,14 +89,29 @@ public abstract class BinaryTree {
 
 public void clearTree() {// Benjamin 4/27 method to clear tree when called upon
 	
-	
 	root =null;
 }
 
+ public void preorderTraversal(Node root) { //Benjamin 4/28
+    if (root != null) {
+        System.out.print(root.getKey() + " ");
+        preorderTraversal(root.getLeft());
+        preorderTraversal(root.getRight());
+    }
+}
+	
+public  void postOrderTraversal(Node root) { //Benjamin 4/28
+    if (root != null) {
+      postorderTraversal(root.getLeft());
+      postorderTraversal(root.getRight());
+      System.out.print(root.getKey() + " ");
+    }
+}	
 
-	
-	
-	
-	
+ public void inOrderTraversal (Node root) { // Benjamin 4/28
+	 
+	inorderTraversal(root.getLeft());
+        System.out.print(root.getKey() + " ");
+        inorderTraversal(root.getRight());
 	
 	}
