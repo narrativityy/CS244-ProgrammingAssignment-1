@@ -47,7 +47,6 @@ public abstract class BinaryTree {
 	
 	
 	
-	//Order/Traversal methods if needed
 	
 	//Made by William 4/21
 	public int findMin(Node root) {
@@ -67,4 +66,37 @@ public abstract class BinaryTree {
 			return findMax(root.getRight());
 		}
 	}
+
+	public int getNodeCount() {// helper method to count total nodes.
+	 countNodes(root);
+	}
+	
+	
+	
+	private int countNodes(Node node) {  //Benjamin 4/27  // recusive method to count the total amount of nodes in the the respective bst tree
+		if(node= null) {
+	         
+		return 0;
+		}
+	        else {
+		
+		return countNodes(node.getleft()) + countNodes(node.getright()) +  1) ;
+			
+		}
+	
+		
+	}
+
+public void clearTree() {// Benjamin 4/27 method to clear tree when called upon
+	
+	
+	root =null;
 }
+
+
+	
+	
+	
+	
+	
+	}
