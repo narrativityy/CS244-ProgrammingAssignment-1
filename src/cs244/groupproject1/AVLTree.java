@@ -1,4 +1,8 @@
 package cs244.groupproject1;
+
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+
 public class AVLTree extends BinaryTree {
 	
 	private int totalRotationsPeformed;

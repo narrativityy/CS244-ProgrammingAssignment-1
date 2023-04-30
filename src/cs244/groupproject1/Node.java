@@ -1,10 +1,13 @@
 package cs244.groupproject1;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 //The node class was made by William: 4/21 
 public class Node {
 	
 	private int key;
 	private Node right;
 	private Node left;
+	Circle circ;
 	
 	//These won't be used for the BST
 	private int height;
@@ -17,6 +20,7 @@ public class Node {
 		
 		height = 1;
 		balanceFactor = 0;
+		circ = new Circle(50, 50, 50, Color.BLACK);
 	}
 	
 	public Node getRight() {
@@ -81,5 +85,8 @@ public class Node {
 		return balanceFactor;
 	}
 	
+	public Circle getCircle() {
+		return circ;
+	}
 
 }

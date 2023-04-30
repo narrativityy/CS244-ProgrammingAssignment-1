@@ -1,7 +1,11 @@
 package cs244.groupproject1;
+
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+
 public abstract class BinaryTree {
 
-	private Node root;
+	protected Node root;
 	
 	public BinaryTree() {
 		root = null;
@@ -15,6 +19,8 @@ public abstract class BinaryTree {
 			return;
 		}
 		root = insert(key, root);
+		
+		
 	}
 	
 	//Made by William 4/21
