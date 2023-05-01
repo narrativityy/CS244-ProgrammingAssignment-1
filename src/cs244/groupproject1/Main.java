@@ -12,8 +12,9 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 	static ArrayList<Integer> nodeKeys = new ArrayList();
-	public static int width = 1000;
-	public static int height = 800;
+	public BinaryTree tree;
+	
+	
 	public static void main(String[] args) {
         launch(args);
     }
@@ -21,15 +22,39 @@ public class Main extends Application {
 	
     @Override
     public void start(Stage primaryStage) {
-    	BinaryTree tree = new BSTTree();
-    	StackPane root = new StackPane();
-        BTreePane treePane = new BTreePane(tree);
+    	
         primaryStage.setTitle("BST and AVLTree Visualizer");
         primaryStage.getIcons().add(new Image("/digitaltree.png"));
         TextField textField = new TextField();
         textField.setPrefColumnCount(2);
         textField.setAlignment(Pos.TOP_LEFT);
         Button insert = new Button("Insert");
+        tree = new BSTTree();
+    	StackPane root = new StackPane();
+        BTreePane treePane = new BTreePane(tree);
+        //Made by John Gallagher 4/30
+        Button delete = new Button("Delete");
+        Button search = new Button("Search");
+        HBox hbox = new HBox(5);
+        Menu dropMenu = new Menu("Select a type of tree");
+        MenuItem avlTree = new MenuItem("AVL Tree");
+        MenuItem binarySearch = new MenuItem("Binary Search");
+        dropMenu.getItems().addAll(avlTree, binarySearch);
+        MenuBar mb = new MenuBar();
+        //Made by John Gallagher 4/30
+        avlTree.setOnAction(e -> {
+        	tree = null;
+        	tree = new AVLTree();
+        	nodeKeys.clear();
+        	treePane.setPane(tree);
+        });
+        //Made by John Gallagher 4/30
+        binarySearch.setOnAction(e -> {
+        	tree = null;
+        	tree = new BSTTree();
+        	nodeKeys.clear();
+        	treePane.setPane(tree);
+        });
         //Made by John Gallagher 4/30
         insert.setOnAction(e -> {
         	int key = Integer.parseInt(textField.getText());
@@ -37,7 +62,7 @@ public class Main extends Application {
         	tree.insert(key);
         	treePane.drawTree();
         }); 
-        Button delete = new Button("Delete");
+        //Made by John Gallagher 4/30
         delete.setOnAction(e -> {
         	int key = Integer.parseInt(textField.getText());
         	nodeKeys.remove(Integer.valueOf(key));
@@ -45,23 +70,20 @@ public class Main extends Application {
         	treePane.drawTree();
         	
         });
-        HBox hbox = new HBox(5);
-        Menu dropMenu = new Menu("Select a type of tree");
-        dropMenu.getItems().addAll(new MenuItem("AVL Tree"), new MenuItem("BS Tree"), new MenuItem("Binary Tree"));
-        MenuBar mb = new MenuBar();
+        //Made by John Gallagher 4/30
+        search.setOnAction(e -> {
+        	int key = Integer.parseInt(textField.getText());
+        	tree.search(key);
+        	treePane.highlightNode(key);
+        });
+        
         mb.getMenus().add(dropMenu);
-        
-        hbox.getChildren().addAll(mb, textField, insert, delete);
+        hbox.getChildren().addAll(mb, textField, insert, delete, search);
         hbox.setAlignment(Pos.TOP_CENTER);
-        
-      
-        
         root.getChildren().addAll(treePane, hbox);
-        primaryStage.setScene(new Scene(root, width, height));
+        primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.show();
-        
-        
-        
+ 
     }
     
 }

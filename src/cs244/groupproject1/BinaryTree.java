@@ -45,6 +45,26 @@ public abstract class BinaryTree {
 	}
 	protected abstract Node remove(int key, Node root);
 	
+	public Node searchHighlight(int key) {
+		return searchHighlight(key, root);
+	}
+	//Made by John Gallagher 4/30
+	public Node searchHighlight(int key, Node current) {
+		if(root == null) {
+			return current;
+		}
+		if(current.getKey() == key) {
+			System.out.println("found matching key");
+			return current;
+			
+		}
+		else if(current.getKey() < key) {
+			return searchHighlight(key, current.getLeft());
+		}
+		else {
+			return searchHighlight(key, current.getRight());
+		}
+	}
 	
 	
 	

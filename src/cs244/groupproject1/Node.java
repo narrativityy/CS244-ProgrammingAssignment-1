@@ -18,7 +18,7 @@ public class Node {
 		
 		height = 1;
 		balanceFactor = 0;
-		circ = new Circle(50,50,50);
+		circ = new Circle();
 		
 	}
 	
