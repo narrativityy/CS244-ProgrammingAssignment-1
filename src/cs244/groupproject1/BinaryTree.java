@@ -1,7 +1,7 @@
 package cs244.groupproject1;
 public abstract class BinaryTree {
 
-	private Node root;
+	public Node root;
 	
 	public BinaryTree() {
 		root = null;
@@ -67,25 +67,26 @@ public abstract class BinaryTree {
 		}
 	}
 
-	public int getNodeCount() {// helper method to count total nodes.
+	public void getNodeCount() {// helper method to count total nodes.
 	 countNodes(root);
 	}
 	
 	
 	
 	private int countNodes(Node node) {  //Benjamin 4/27  // recusive method to count the total amount of nodes in the the respective bst tree
-		if(node= null) {
+		if(node == null) {
 	         
 		return 0;
 		}
 	        else {
 		
-		return countNodes(node.getleft()) + countNodes(node.getright()) +  1) ;
+		return countNodes(node.getLeft()) + countNodes(node.getRight()) +  1;
 			
 		}
 	
 		
 	}
+	
 
 public void clearTree() {// Benjamin 4/27 method to clear tree when called upon
 	
@@ -102,16 +103,17 @@ public void clearTree() {// Benjamin 4/27 method to clear tree when called upon
 	
 public  void postOrderTraversal(Node root) { //Benjamin 4/28
     if (root != null) {
-      postorderTraversal(root.getLeft());
-      postorderTraversal(root.getRight());
+      postOrderTraversal(root.getLeft());
+      postOrderTraversal(root.getRight());
       System.out.print(root.getKey() + " ");
     }
 }	
 
  public void inOrderTraversal (Node root) { // Benjamin 4/28
 	 
-	inorderTraversal(root.getLeft());
+	 	inOrderTraversal(root.getLeft());
         System.out.print(root.getKey() + " ");
-        inorderTraversal(root.getRight());
+        inOrderTraversal(root.getRight());
 	
 	}
+}

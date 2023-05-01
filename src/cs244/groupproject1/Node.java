@@ -1,4 +1,5 @@
 package cs244.groupproject1;
+import javafx.scene.shape.*;
 //The node class was made by William: 4/21 
 public class Node {
 	
@@ -9,7 +10,7 @@ public class Node {
 	//These won't be used for the BST
 	private int height;
 	private int balanceFactor;
-	
+	public Circle circ;
 	public Node(int k) {
 		right = null;
 		left = null;
@@ -17,13 +18,15 @@ public class Node {
 		
 		height = 1;
 		balanceFactor = 0;
+		circ = new Circle(50,50,50);
+		
 	}
 	
 	public Node getRight() {
 		return right;
 	}
 	public Node getLeft() {
-		return right;
+		return left;
 	}
 	public int getKey() {
 		return key;
