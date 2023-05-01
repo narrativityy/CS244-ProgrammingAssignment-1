@@ -1,4 +1,5 @@
 package cs244.groupproject1;
+import java.util.ArrayList;
 public abstract class BinaryTree {
 
 	public Node root;
@@ -45,28 +46,29 @@ public abstract class BinaryTree {
 	}
 	protected abstract Node remove(int key, Node root);
 	
-	public Node searchHighlight(int key) {
-		return searchHighlight(key, root);
+	public Node searchHighlight(int key, BinaryTree tree) {
+		System.out.println("Starting search");
+		return searchHighlight(key, tree.root);
 	}
 	//Made by John Gallagher 4/30
 	public Node searchHighlight(int key, Node current) {
-		if(root == null) {
-			return current;
-		}
+		
 		if(current.getKey() == key) {
 			System.out.println("found matching key");
 			return current;
-			
 		}
 		else if(current.getKey() < key) {
-			return searchHighlight(key, current.getLeft());
+			System.out.println("Going left");
+			return searchHighlight(key, current = current.getLeft());
 		}
-		else {
-			return searchHighlight(key, current.getRight());
+		else if(current.getKey() > key) {
+			System.out.println("Going right");
+			return searchHighlight(key, current = current.getRight());
+		}else {
+			return current;
 		}
-	}
-	
-	
+		
+}
 	
 	//Made by William 4/21
 	public int findMin(Node root) {
@@ -130,10 +132,35 @@ public  void postOrderTraversal(Node root) { //Benjamin 4/28
 }	
 
  public void inOrderTraversal (Node root) { // Benjamin 4/28
-	 
+	 if(root != null) {
 	 	inOrderTraversal(root.getLeft());
         System.out.print(root.getKey() + " ");
         inOrderTraversal(root.getRight());
+	 }
 	
 	}
+ 
+ public void inOrderTraversalToString(Node root, ArrayList<String> res) {
+	 if(root != null) {
+	 	inOrderTraversalToString(root.getLeft(), res);
+	 	res.add(Integer.toString(root.getKey()));
+	 	inOrderTraversalToString(root.getRight(), res);
+	 }
+ }
+ 
+ public void postOrderTraversalToString(Node root, ArrayList<String> res) {
+	 if(root != null) {
+		 postOrderTraversalToString(root.getLeft(), res);
+		 postOrderTraversalToString(root.getRight(), res);
+		 res.add(Integer.toString(root.getKey()));
+	 }
+ }
+ 
+ public void preOrderTraversalToString(Node root, ArrayList<String> res) {
+	 if(root != null ) {
+		 res.add(Integer.toString(root.getKey()));
+		 preOrderTraversalToString(root.getLeft(), res);
+		 preOrderTraversalToString(root.getRight(), res);
+	 }
+ }
 }

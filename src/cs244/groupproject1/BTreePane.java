@@ -8,7 +8,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import java.util.ArrayList;
 
 // Made by John Gallagher 4/30
 public class BTreePane extends Pane{
@@ -19,12 +23,17 @@ public class BTreePane extends Pane{
 	private double horzInc = 200;
 	private double width = 1000;
 	private double height = 100;
+	
 	BTreePane(BinaryTree tree){
 		setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));
 	}
 	
 	public void setPane(BinaryTree tree) {
 		this.tree = null;
+		this.tree = tree;
+	}
+	
+	public void updateTree(BinaryTree tree) {
 		this.tree = tree;
 	}
 	
@@ -53,10 +62,47 @@ public class BTreePane extends Pane{
 	}
 	
 	public void highlightNode(int key) {
-		if(tree.search(key) == true) {
-			Node current = tree.searchHighlight(key);
+			Node current = tree.searchHighlight(key, tree);
 			current.circ.setFill(Color.YELLOW);
-		}
+		
+	}
+	//Made by John Gallagher 4/30
+	public void prepareOutput() {
+		ArrayList<String> outputs = new ArrayList<>();
+		tree.inOrderTraversalToString(tree.root, outputs);
+		String inOrder = outputs.toString();
+		outputs.clear();
+		tree.preOrderTraversalToString(tree.root, outputs);
+		String preOrder = outputs.toString();
+		outputs.clear();
+		tree.postOrderTraversalToString(tree.root, outputs);
+		String postOrder = outputs.toString();
+		
+		inOrder.replace(" ", ",");
+		preOrder.replace(" ", ",");
+		postOrder.replace(" ", ",");
+		
+		Text preOrderText = new Text();
+		Text postOrderText = new Text();
+		Text inOrderText = new Text();
+		
+		
+		preOrderText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
+		postOrderText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
+		inOrderText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
+		preOrderText.setX(50);
+		preOrderText.setY(650);
+		inOrderText.setX(50);
+		inOrderText.setY(670);
+		postOrderText.setX(50);
+		postOrderText.setY(690);
+		preOrderText.setText("PreOrder Traversal: " + preOrder);
+		postOrderText.setText("PostOrder Traversal" + postOrder);
+		inOrderText.setText("In-Order" + inOrder);
+		
+		getChildren().addAll(preOrderText, postOrderText, inOrderText);
+		
+		
 	}
 
 }
